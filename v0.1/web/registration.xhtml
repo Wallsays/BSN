@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Dis
+  Date: 04.01.13
+  Time: 19:39
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<f:loadBundle basename="Messages" var="Message"/>
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>smth</title>
+    <link type="text/css" rel="stylesheet" href="resources/styles.css" media="screen"/>
+
+</h:head>
+
+<body>
+<div class="roundedH">
+<h2>Registration</h2>
+<f:view>
+    <h:form id="regForm">
+        <h:message for="regForm" /><br />
+
+        <h:outputText value="#{Message.username_label}" />&nbsp;
+        <p:inputText id="username" value="#{RegistrationBean.username}" required="true">
+            <f:validateLength maximum="15" minimum="3" />
+        </p:inputText>
+        <h:message for="username" /><br /> <br />
+
+        <h:outputText value="#{Message.password_label}" />&nbsp;
+        <p:password id="password" value="#{RegistrationBean.password}" required="true" feedback="true">
+            <f:validateLength minimum="3" maximum="15"  />
+        </p:password>
+        <h:message for="password" /><br /> <br />
+
+        <h:outputText value="#{Message.avatarUrl_label}" />&nbsp;
+        <br />
+        <p:fileUpload fileUploadListener="#{RegistrationBean.handleFileUpload}"
+                      mode="simple"
+                      update="messages"
+                      auto="true"
+                      sizeLimit="300000"
+                      allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
+        <p:growl id="messages" showDetail="true"/><br /><br />
+
+
+
+        <h:outputText value="#{Message.role_label}" />&nbsp;
+        <h:selectOneMenu id="group" value="#{RegistrationBean.role}" >
+            <f:selectItems value="#{RegistrationBean.roleValue}" />
+        </h:selectOneMenu >
+        <h:message for="group" /><br /> <br />
+
+        <h:outputText value="#{Message.info_label}" />&nbsp;
+        <p:inputTextarea id="info" value="#{RegistrationBean.info}" cols="55">
+            <f:validateLength maximum="300"/>
+        </p:inputTextarea>
+        <h:message for="info" /><br /> <br />
+
+        <p:commandButton id="submit" action="#{RegistrationBean.register}" value="#{Message.reg_button}" />
+        &nbsp;<h:link value="#{Message.cancel}" outcome="/login.xtml"/>
+        <br /><br />
+
+    </h:form>
+</f:view>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Dis
+  Date: 05.01.13
+  Time: 0:59
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<f:loadBundle basename="Messages" var="Message"/>
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>smth</title>
+    <link type="text/css" rel="stylesheet" href="resources/styles.css" media="screen"/>
+
+</h:head>
+
+<body>
+<div id="header" class="rounded">
+    <h:body>
+
+        <table border="1" cellpadding="10" width="100%">
+            <tr>
+                <td colspan="3">
+                    <table border="1" cellpadding="10">
+                        <tr>
+                            <td>
+                                <h:form>
+                                    <h:link value="#{Message.back_to_profile}" outcome="/my.xhtml"/>
+                                </h:form>
+                            </td>
+                            <td width="30px">
+                            </td>
+                            <td>
+                                <f:view>
+                                    <h:form>
+
+                                        <h:outputText value="#{Message.message_label}"/>&nbsp;
+                                        <p:editor id="message" value="#{SendImBean.message}" >
+                                            <!--<h:inputTextarea id="message" value="#{SendImBean.message}">-->
+                                            <f:validateLength maximum="300"/>
+                                            <!--</h:inputTextarea>-->
+                                        </p:editor>
+                                        <br/>
+                                        <h:outputText value="#{Message.to_label}"/>
+                                        <!--<h:inputText id="adressee" value="#{SendImBean.adressLogin}" required="true"/><br/>-->
+                                        <p:inputText id="adressee" value="#{SendImBean.adressLogin}"
+                                                     required="true"/>  &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <h:commandButton id="send" action="#{SendImBean.sendIm}"
+                                                         value="#{Message.send_message_button}"/>
+                                    </h:form>
+                                </f:view>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+
+            </tr>
+            <tr>
+                <td align="center" valign="top">
+                    <h3><h:outputText value="#{Message.im_outcome_messages}"/></h3>
+                    <h:outputText value="#{Message.im_zero_outcome}" rendered="#{empty ImShowingBean.outCome()}" />
+                    <ui:repeat value="#{ImShowingBean.outCome()}" var="im" rendered="#{not empty ImShowingBean.outCome()}">
+                        <div class="roundedWindows">
+                            <table border="1"  cellpadding="10" >
+                                <tr>
+                                    <td height="50px" width="50px" ><h:form><h:commandLink>#{im.recipient}</h:commandLink></h:form></td>
+                                    <td>
+                                        <table border="1" cellpadding="10" >
+                                            <tr>
+                                                <td>
+                                                    <h:outputText escape="false" value="#{im.message}"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>#{im.postTime}</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </ui:repeat>
+                </td>
+                <td width="50px">
+                </td>
+                <td align="center" valign="top">
+                    <h3><h:outputText value="#{Message.im_income_messages}"/></h3>
+                    <h:outputText value="#{Message.im_zero_income}" rendered="#{empty ImShowingBean.inCome()}" />
+                    <ui:repeat value="#{ImShowingBean.inCome()}" var="im" rendered="#{not empty ImShowingBean.inCome()}">
+                        <div class="roundedWindows">
+                            <table border="1"  cellpadding="10" >
+                                <tr>
+                                    <td height="50px" width="50px" ><h:form><h:commandLink>#{im.sender}</h:commandLink></h:form></td>
+                                    <td>
+                                        <table border="1" cellpadding="10" >
+                                            <tr>
+                                                <td>
+                                                    <h:outputText escape="false" value="#{im.message}"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>#{im.postTime}</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </ui:repeat>
+                </td>
+            </tr>
+        </table>
+
+
+    </h:body>
+</div>
+</body>
+</html>

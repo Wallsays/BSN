@@ -1,0 +1,63 @@
+body {
+    background-color: #3399cc;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+}
+
+div.rounded {
+    width: 960px;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    position: relative;
+    padding: 20px 20px 20px 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    background-color: #FFFFFF;
+    -webkit-box-shadow: #ADD1FF 23px 23px 23px;
+    -moz-box-shadow: #ADD1FF 23px 23px 23px;
+    box-shadow: #ADD1FF 23px 23px 23px;
+}
+
+div.roundedH {
+    width: 360px;
+    height: 100%;
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    position: relative;
+    padding: 20px 20px 20px 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    background-color: #FFFFFF;
+    -webkit-box-shadow: #ADD1FF 23px 23px 23px;
+    -moz-box-shadow: #ADD1FF 23px 23px 23px;
+    box-shadow: #ADD1FF 23px 23px 23px;
+}
+
+div.roundedWindows {
+    width: 330px;
+    height: 100%;
+    margin-bottom: 20px;
+    position: relative;
+    padding: 10px 10px 10px 10px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    border: 1px solid #757574;
+    background-color: #FDFFC9;
+    -webkit-box-shadow: #CCCCCC 7px 7px 7px;
+    -moz-box-shadow: #CCCCCC 7px 7px 7px;
+    box-shadow: #CCCCCC 7px 7px 7px;
+}
+
+/*for PF*/
+.ui-widget,
+.ui-widget .ui-widget {
+    font-size: 90% !important;
+}

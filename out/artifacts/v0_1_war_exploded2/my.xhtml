@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Dis
+  Date: 04.01.13
+  Time: 16:03
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<f:loadBundle basename="Messages" var="Message"/>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>smth</title>
+    <link type="text/css" rel="stylesheet" href="resources/styles.css" media="screen"/>
+</head>
+
+
+<h:body>
+<div id="header" class="rounded">
+    <h:outputText value="#{Message.user_notLogged}" rendered="#{empty ProfileBean.initialize()}" escape="false"/>
+    <h:link value="#{Message.login_button}" outcome="/login.xhtml" rendered="#{empty ProfileBean.initialize()}"/>
+    <h:outputText value=" " rendered="#{empty ProfileBean.initialize()}" escape="false"/>
+    <h:link value="#{Message.registration_button}" outcome="/registration.xhtml" rendered="#{empty ProfileBean.initialize()}"/>
+    <h:body rendered="#{not empty ProfileBean.initialize()}">
+<table  border="1" cellpadding="10">
+    <tr>
+        <td>
+                <h3>
+                    This is YOU
+                </h3>
+                <h:form>
+                    <h:commandLink value="#{Message.logout_button}" action="#{LoginBean.logout}"/>
+                    &nbsp;<h:outputText value="#{sessionScope['user']}"/> <br/>
+                    <h:link value="#{Message.messages_button}" outcome="/messaging.xhtml"/><br/>
+
+                    <h:commandLink value="#{Message.users_button}" action="toUsers"/>
+                </h:form>
+
+        </td>
+        <td width="40"></td>
+        <td>
+
+            <h:form>
+                <h:dataTable value="#{ProfileBean.initialize()}" var="u" border="0">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{Message.user_fullName}"/>
+                        </f:facet>#{u.fullName}
+                    </h:column>
+                </h:dataTable>
+                <p/>
+                <h:dataTable value="#{ProfileBean.initialize()}" var="u" border="0">
+                    <h:column>
+                        <img src="/images/avatars/#{u.avatarUrl}"
+                             alt="#{u.login}" style="height:240px; width:180px;"/>
+                    </h:column>
+                </h:dataTable>
+                <h:dataTable value="#{ProfileBean.initialize()}" var="u" border="0">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{Message.role_label}"/>
+                        </f:facet>#{u.role}
+                    </h:column>
+                </h:dataTable>
+                <h:dataTable value="#{ProfileBean.initialize()}" var="u" border="0">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{Message.info_label}"/>
+                        </f:facet>#{u.info}
+                    </h:column>
+
+                </h:dataTable>
+            </h:form>
+        </td>
+    </tr>
+</table>
+     </h:body>
+</div>
+</h:body>
+
+</html>
